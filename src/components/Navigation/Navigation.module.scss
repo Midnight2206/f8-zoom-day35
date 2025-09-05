@@ -1,0 +1,36 @@
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 60px;
+  padding: 10px 24px;
+  background: #e9e88c;
+  border-bottom: 1px solid #ddd;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: #fff;
+  color: #333;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.25s ease;
+
+  &:hover {
+    background: #f1f5ff;
+    border-color: #007bff;
+    color: #007bff;
+  }
+}
+
+.active {
+  background: #007bff;
+  border-color: #0056d2;
+  color: #fff;
+  font-weight: 600;
+}

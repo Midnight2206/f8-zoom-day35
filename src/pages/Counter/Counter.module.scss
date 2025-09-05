@@ -1,0 +1,40 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 24px auto;
+    background-color: #3333;
+    height: 400px;
+    width: 600px;
+    border-radius: 8px;
+    font-size: 1.6rem;
+}
+.controls {
+    margin: 12px;
+    display: flex;
+    gap: 8px;
+}
+.btn {
+    padding: 12px 16px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    background-color: aquamarine;
+}
+.btn:hover {
+    opacity: 0.6;
+}
+.zero {
+    color: #333
+}
+.positive {
+    color: green;
+}
+.negative {
+    color: red;
+}
+.info {
+    background-color: blueviolet;
+    padding: 8px 12px;
+}
