@@ -32,6 +32,8 @@ function ButtonsPages() {
             <Button rounded disabled>Rounded Disabled</Button>
             <Button bordered disabled>Bordered Disabled</Button>
             <Button primary disabled>Primary Disabled</Button>
+            <Button primary href="https://www.google.com/?hl=vi" target="_blank">Go to Google</Button>
+            <Button primary bordered rounded to="/comment">Go to Comments</Button>
         </div>
     );
 }

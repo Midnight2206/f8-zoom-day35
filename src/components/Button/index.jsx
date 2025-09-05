@@ -8,6 +8,7 @@ const cx = classNames.bind(styles);
 function Button({
   children,
   to,
+  href,
   bordered,
   rounded,
   primary,
@@ -40,19 +41,41 @@ function Button({
   };
   const handleChangeActive = (isActive) => {
     onChangeActive?.(isActive);
-  }
+  };
   const handleChangePending = (isPending) => {
     onChangePending?.(isPending);
-  }
+  };
   const getNavLinkClass = ({ isActive, isPending }) => {
     const navLinkClassesObj = {};
     if (navLink) {
       navLinkClassesObj.active = isActive;
       navLinkClassesObj.pending = isPending;
-    };
-    return `${cx(navLinkClassesObj)}`
+    }
+    return `${cx(navLinkClassesObj)}`;
   };
-
+  if (href) {
+    return (
+      <a
+        {...passProps}
+        onClick={handleClick}
+        href={href}
+        className={`${baseClasses} ${className}`}
+      >
+        <span className={cx("children")}>
+          {leftIcon && (
+            <FontAwesomeIcon icon={leftIcon} className={cx("left-icon")} />
+          )}
+          {children}
+          {rightIcon && (
+            <FontAwesomeIcon icon={rightIcon} className={cx("right-icon")} />
+          )}
+        </span>
+        {loading && (
+          <FontAwesomeIcon icon={faSpinner} className={cx("pending-icon")} />
+        )}
+      </a>
+    );
+  }
   if (to) {
     if (navLink) {
       return (
@@ -64,23 +87,32 @@ function Button({
             `${getNavLinkClass(navProps)} ${baseClasses} ${className}`
           }
         >
-          {({isActive, isPending}) => {
+          {({ isActive, isPending }) => {
             handleChangeActive(isActive);
             handleChangePending(isPending);
             return (
               <>
                 <span className={cx("children")}>
-              {leftIcon && (
-                <FontAwesomeIcon icon={leftIcon} className={cx("left-icon")} />
-              )}
-              {children}
-              {rightIcon && (
-                <FontAwesomeIcon icon={rightIcon} className={cx("right-icon")} />
-              )}
-            </span>
-            <FontAwesomeIcon icon={faSpinner} className={cx("pending-icon")} />
+                  {leftIcon && (
+                    <FontAwesomeIcon
+                      icon={leftIcon}
+                      className={cx("left-icon")}
+                    />
+                  )}
+                  {children}
+                  {rightIcon && (
+                    <FontAwesomeIcon
+                      icon={rightIcon}
+                      className={cx("right-icon")}
+                    />
+                  )}
+                </span>
+                <FontAwesomeIcon
+                  icon={faSpinner}
+                  className={cx("pending-icon")}
+                />
               </>
-            )
+            );
           }}
         </NavLink>
       );
@@ -136,6 +168,7 @@ function Button({
 Button.propTypes = {
   children: PropTypes.node.isRequired,
   to: PropTypes.string,
+  href: PropTypes.string,
   navLink: PropTypes.bool,
   className: PropTypes.string,
   disabled: PropTypes.bool,
