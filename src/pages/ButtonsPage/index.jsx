@@ -10,7 +10,7 @@ function ButtonsPages() {
     const [loading, setLoading] = useState(false);
     return (
         <div className={cx("wrapper")}>
-            <Button to="/buttons" navLink={true}>NavLink</Button>
+            <Button to="/buttons" navLink={true} onChangeActive={(isActive) => console.log(isActive)}>NavLink</Button>
             <Button disabled>Disabled</Button>
             <Button bordered>Bordered</Button>
             <Button rounded>Rounded</Button>
@@ -24,7 +24,6 @@ function ButtonsPages() {
             <Button bordered loading={loading} onClick={() => setLoading(prev => !prev)}>Loading</Button>
             <Button primary bordered loading={loading} onClick={() => setLoading(prev => !prev)}>Loading</Button>
             <Button rounded loading={loading} onClick={() => setLoading(prev => !prev)}>Loading</Button>
-
             <Button bordered primary>Bordered Primary</Button>
             <Button bordered rounded primary>Bordered Rounded Primary</Button>
             <Button rounded primary>Rounded Primary</Button>

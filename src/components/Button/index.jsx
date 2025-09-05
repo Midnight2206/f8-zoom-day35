@@ -13,6 +13,8 @@ function Button({
   primary,
   loading,
   onClick,
+  onChangeActive,
+  onChangePending,
   size = "medium",
   navLink,
   leftIcon,
@@ -36,6 +38,12 @@ function Button({
     }
     onClick?.(e);
   };
+  const handleChangeActive = (isActive) => {
+    onChangeActive?.(isActive);
+  }
+  const handleChangePending = (isPending) => {
+    onChangePending?.(isPending);
+  }
   const getNavLinkClass = ({ isActive, isPending }) => {
     const navLinkClassesObj = {};
     if (navLink) {
@@ -56,16 +64,24 @@ function Button({
             `${getNavLinkClass(navProps)} ${baseClasses} ${className}`
           }
         >
-          <span className={cx("children")}>
-            {leftIcon && (
-              <FontAwesomeIcon icon={leftIcon} className={cx("left-icon")} />
-            )}
-            {children}
-            {rightIcon && (
-              <FontAwesomeIcon icon={rightIcon} className={cx("right-icon")} />
-            )}
-          </span>
-          <FontAwesomeIcon icon={faSpinner} className={cx("pending-icon")} />
+          {({isActive, isPending}) => {
+            handleChangeActive(isActive);
+            handleChangePending(isPending);
+            return (
+              <>
+                <span className={cx("children")}>
+              {leftIcon && (
+                <FontAwesomeIcon icon={leftIcon} className={cx("left-icon")} />
+              )}
+              {children}
+              {rightIcon && (
+                <FontAwesomeIcon icon={rightIcon} className={cx("right-icon")} />
+              )}
+            </span>
+            <FontAwesomeIcon icon={faSpinner} className={cx("pending-icon")} />
+              </>
+            )
+          }}
         </NavLink>
       );
     } else {
@@ -129,6 +145,8 @@ Button.propTypes = {
   loading: PropTypes.bool,
   size: PropTypes.oneOf(["small", "medium", "large"]),
   onClick: PropTypes.func,
+  onChangeActive: PropTypes.func,
+  onChangePending: PropTypes.func,
   leftIcon: PropTypes.object,
   rightIcon: PropTypes.object,
 };
